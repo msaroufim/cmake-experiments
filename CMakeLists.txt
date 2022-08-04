@@ -15,8 +15,13 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
 
-# Adder matches name of directory
-add_subdirectory(Adder)
+# adder use logic
+option(USE_ADDER "A simple library for adding 2 floats" ON)
+
+if(USE_ADDER)
+    # Adder matches name of directory
+    add_subdirectory(Adder)
+endif()
 
 add_subdirectory(external/glfw)
 
@@ -35,4 +40,5 @@ target_link_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} adder glfw)
 
-# Submodules
+install(TARGETS ${PROJECT_NAME} DESTINATION BIN)
+install(FILES ${PROJECT_BINARY_DIR}/HelloWorldConfig.h DESTINATION include)
