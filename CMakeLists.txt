@@ -4,11 +4,16 @@
 cmake_minimum_required(VERSION 3.23.3)
 
 # Binary will be called HelloWorld
-project(HelloWorld)
+project(HelloWorld VERSION 1.0)
+
+# Setup configuration file to determine version
+configure_file(HelloWorldConfig.h.in HelloWorldConfig.h)
 
 # Picks up the project name automatically here
 # Put all the files I will need here
 add_executable(${PROJECT_NAME} main.cpp)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
 
 # Adder matches name of directory
 add_subdirectory(Adder)
